@@ -26,5 +26,16 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
 
+<img src="./Images/Weather Dashboard1.png" alt="Dashboard 1">
+<br>
+
+<img src="./Images/Weather Dashboard2.png" alt="Dashboard 2">
+<br>
+
+<img src="./Images/Weather Dashboard3.png" alt="Dashboard 3">
+
+
+
+
 <h2>Created by</h2>
 Tomeeka Lilly

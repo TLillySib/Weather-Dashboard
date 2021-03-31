@@ -11,7 +11,9 @@ function initPage() {
   var historyEl = document.getElementById("history");
   let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
   console.log(searchHistory);
-  const APIKey = "4a22ae38fabfa1f0d3429b2901be4e0a";
+
+  const APIKey = "2ba2cac82ae53fe500d806297ae900c6";
+
   //  When search button is clicked, read the city name typed by the user
 
   function getWeather(cityName) {
@@ -47,18 +49,19 @@ function initPage() {
       let lat = response.data.coord.lat;
       let lon = response.data.coord.lon;
       let UVQueryURL =
-        "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" +
+        "https://api.openweathermap.org/data/2.5/onecall?lat=" +
         lat +
         "&lon=" +
         lon +
-        "&appid=" +
-        APIKey +
-        "&cnt=1";
-      axios.get(UVQueryURL).then(function (response) {
+        "&exclude=" +
+        "&appid=" + APIKey;
+        console.log(UVQueryURL);
+        axios.get(UVQueryURL).then(function (response) {
+        console.log(response.data.current.uvi);
         let UVIndex = document.createElement("span");
         UVIndex.setAttribute("class", "badge badge-danger");
-        UVIndex.innerHTML = response.data[0].value;
-        currentUVEl.innerHTML = "UV Index: ";
+        UVIndex.innerHTML = response.data.current.uvi;
+        currentUVEl.innerHTML = "UV-Index: ";
         currentUVEl.append(UVIndex);
       });
       //  Using saved city name, execute a 5-day forecast get request from open weather map api
@@ -68,6 +71,7 @@ function initPage() {
         cityID +
         "&appid=" +
         APIKey;
+
       axios.get(forecastQueryURL).then(function (response) {
         //  Parse response to display forecast for next 5 days underneath current conditions
         console.log(response);
